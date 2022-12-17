@@ -1,7 +1,6 @@
 import "./App.css";
-
 import { AddColor } from "./AddColor";
-import { Counter } from "./Counter";
+import { Book } from "./Book";
 const INITIAL_BOOK_LIST = [
   {
     name: "Charlotte's web",
@@ -68,33 +67,10 @@ export default function App() {
   return (
     <div className="App">
       <div className="book-list">
-        {bookList.map((bk) => (
-          <Book book={bk} />
+        {bookList.map((bk, index) => (
+          <Book key={index} book={bk} />
         ))}
       </div>
-    </div>
-  );
-}
-
-function Book({ book }) {
-  // const book = {
-  //   name: "The Secret",
-  //   poster:
-  //     "https://m.media-amazon.com/images/I/51gddyfMFNL._SX198_BO1,204,203,200_QL40_FMwebp_.jpg",
-  //   rating: 9,
-  //   summary:
-  //     "The Secret is a self-help book by Rhonda Byrne that explains how the law of attraction, which states that positive energy attracts positive things into your life, governs your thinking and actions, and how you can use the power of positive thinking to achieve anything you can imagine.",
-  // };
-
-  return (
-    <div className="book-container">
-      <img className="book-poster" src={book.poster} alt={book.name} />
-      <div className="book-spec">
-        <h2 className="book-name">{book.name}</h2>
-        <p className="book-rating">⭐{book.rating}</p>
-      </div>
-      <p className="book-summary">{book.summary}</p>
-      <Counter />
     </div>
   );
 }
