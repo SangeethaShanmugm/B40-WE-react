@@ -1,6 +1,8 @@
 import "./App.css";
 import { AddColor } from "./AddColor";
 import { Book } from "./Book";
+import { Msg } from "./Msg";
+import { Routes, Route, Link, useParams } from "react-router-dom";
 const INITIAL_BOOK_LIST = [
   {
     name: "Charlotte's web",
@@ -63,14 +65,76 @@ const INITIAL_BOOK_LIST = [
 ];
 
 export default function App() {
-  const bookList = INITIAL_BOOK_LIST;
   return (
     <div className="App">
-      <div className="book-list">
-        {bookList.map((bk, index) => (
-          <Book key={index} book={bk} />
-        ))}
-      </div>
+      <nav>
+        <ul>
+          <li>
+            {/* Link change page without refresh */}
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/book">BookList</Link>
+          </li>
+          <li>
+            <Link to="/add-color">AddColor</Link>
+          </li>
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
+          <li>
+            <Link to="/somewhere">Somewhere</Link>
+          </li>
+        </ul>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/book" element={<BookList />} />
+        <Route path="/book/:bookid" element={<BookDetail />} />
+        <Route path="/add-color" element={<AddColor />} />
+        <Route path="/users" element={<Users />} />
+      </Routes>
+    </div>
+  );
+}
+
+function BookDetail() {
+  const { bookid } = useParams();
+  return <div>Book detail page- {bookid} </div>;
+}
+
+function Users() {
+  const users = [
+    {
+      name: "john",
+      pic: "pic",
+    },
+    {
+      name: "jack",
+      pic: "pic2",
+    },
+  ];
+  return (
+    <div>
+      {users.map((usr) => (
+        <Msg name={usr.name} pic={usr.pic} />
+      ))}
+    </div>
+  );
+}
+
+function Home() {
+  return <div>Welcome to Book App 🥳🥳🥳🥳🥳</div>;
+}
+
+function BookList() {
+  const bookList = INITIAL_BOOK_LIST;
+  return (
+    <div className="book-list">
+      {bookList.map((bk, index) => (
+        <Book key={index} book={bk} id={index} />
+      ))}
     </div>
   );
 }
