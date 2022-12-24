@@ -3,6 +3,7 @@ import { AddColor } from "./AddColor";
 import { Book } from "./Book";
 import { Msg } from "./Msg";
 import { Routes, Route, Link, useParams } from "react-router-dom";
+import { useState } from "react";
 const INITIAL_BOOK_LIST = [
   {
     name: "Charlotte's web",
@@ -77,6 +78,9 @@ export default function App() {
             <Link to="/book">BookList</Link>
           </li>
           <li>
+            <Link to="/book/add">Add Book</Link>
+          </li>
+          <li>
             <Link to="/add-color">AddColor</Link>
           </li>
           <li>
@@ -92,6 +96,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/book" element={<BookList />} />
         <Route path="/book/:bookid" element={<BookDetail />} />
+        {/* <Route path="/book/add" element={<AddBook />} /> */}
         <Route path="/add-color" element={<AddColor />} />
         <Route path="/users" element={<Users />} />
       </Routes>
@@ -129,12 +134,110 @@ function Home() {
 }
 
 function BookList() {
-  const bookList = INITIAL_BOOK_LIST;
+  // const bookList = INITIAL_BOOK_LIST;
+  const [bookList, setBookList] = useState(INITIAL_BOOK_LIST);
+
+  const [name, setName] = useState("");
+  const [poster, setPoster] = useState("");
+  const [rating, setRating] = useState("");
+  const [summary, setSummary] = useState("");
   return (
-    <div className="book-list">
-      {bookList.map((bk, index) => (
-        <Book key={index} book={bk} id={index} />
-      ))}
+    <div>
+      <div className="add-book-form">
+        <input
+          onChange={(event) => setName(event.target.value)}
+          type="text"
+          placeholder="Enter a name"
+        />
+        <input
+          onChange={(event) => setPoster(event.target.value)}
+          type="text"
+          placeholder="Enter a poster"
+        />
+        <input
+          onChange={(event) => setRating(event.target.value)}
+          type="text"
+          placeholder="Enter a rating"
+        />
+        <input
+          onChange={(event) => setSummary(event.target.value)}
+          type="text"
+          placeholder="Enter a summary"
+        />
+        <button
+          onClick={() => {
+            const newBook = {
+              name: name,
+              poster: poster,
+              rating: rating,
+              summary: summary,
+            };
+
+            setBookList([...bookList, newBook]);
+            console.log(bookList, newBook);
+            //copy the bookList and add new book
+          }}
+        >
+          Add Book
+        </button>
+      </div>
+      <div className="book-list">
+        {bookList.map((bk, index) => (
+          <Book key={index} book={bk} id={index} />
+        ))}
+      </div>
     </div>
   );
 }
+//Task - 15mins
+//AddBook
+//4 input field - name, poster, summary, rating
+//Add Book button
+
+// function AddBook() {
+//   const [bookList, setBookList] = useState(INITIAL_BOOK_LIST);
+//   const [name, setName] = useState("");
+//   const [poster, setPoster] = useState("");
+//   const [rating, setRating] = useState("");
+//   const [summary, setSummary] = useState("");
+//   return (
+//     <div className="add-book-form">
+//       <input
+//         onChange={(event) => setName(event.target.value)}
+//         type="text"
+//         placeholder="Enter a name"
+//       />
+//       <input
+//         onChange={(event) => setPoster(event.target.value)}
+//         type="text"
+//         placeholder="Enter a poster"
+//       />
+//       <input
+//         onChange={(event) => setRating(event.target.value)}
+//         type="text"
+//         placeholder="Enter a rating"
+//       />
+//       <input
+//         onChange={(event) => setSummary(event.target.value)}
+//         type="text"
+//         placeholder="Enter a summary"
+//       />
+//       <button
+//         onClick={() => {
+//           const newBook = {
+//             name: name,
+//             poster: poster,
+//             rating: rating,
+//             summary: summary,
+//           };
+
+//           setBookList([...bookList, newBook]);
+//           console.log(bookList, newBook);
+//           //copy the bookList and add new book
+//         }}
+//       >
+//         Add Book
+//       </button>
+//     </div>
+//   );
+// }
