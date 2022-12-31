@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Counter } from "./Counter";
-
+import IconButton from "@mui/material/IconButton";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import InfoIcon from "@mui/icons-material/Info";
 export function Book({ book, id }) {
   // conditional styling
   //true - visible
@@ -26,8 +29,25 @@ export function Book({ book, id }) {
         </h2>
         <p className="book-rating">⭐{book.rating}</p>
       </div>
-      <button onClick={() => setShow(!show)}>Toggle Summary</button>
-      <button onClick={() => navigate("/book/" + id)}>Info</button>
+
+      <IconButton
+        aria-label="like-button"
+        color="primary"
+        onClick={() => setShow(!show)}
+      >
+        {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      </IconButton>
+
+      <IconButton
+        aria-label="like-button"
+        color="primary"
+        onClick={() => navigate("/book/" + id)}
+      >
+        <InfoIcon />
+      </IconButton>
+
+      {/* <button onClick={() => setShow(!show)}>Toggle Summary</button> */}
+      {/* <button onClick={() => navigate("/book/" + id)}>Info</button> */}
       {/* <p style={summaryStyles} className="book-summary">
         {book.summary}
       </p> */}

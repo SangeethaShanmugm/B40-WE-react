@@ -4,6 +4,8 @@ import { Book } from "./Book";
 import { Msg } from "./Msg";
 import { Routes, Route, Link, useParams } from "react-router-dom";
 import { useState } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 const INITIAL_BOOK_LIST = [
   {
     name: "Charlotte's web",
@@ -77,9 +79,9 @@ export default function App() {
           <li>
             <Link to="/book">BookList</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/book/add">Add Book</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/add-color">AddColor</Link>
           </li>
@@ -144,27 +146,36 @@ function BookList() {
   return (
     <div>
       <div className="add-book-form">
-        <input
+        <TextField
           onChange={(event) => setName(event.target.value)}
-          type="text"
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
           placeholder="Enter a name"
         />
-        <input
+        <TextField
           onChange={(event) => setPoster(event.target.value)}
-          type="text"
+          id="outlined-basic"
+          label="Poster"
+          variant="outlined"
           placeholder="Enter a poster"
         />
-        <input
+        <TextField
           onChange={(event) => setRating(event.target.value)}
-          type="text"
+          id="outlined-basic"
+          label="Rating"
+          variant="outlined"
           placeholder="Enter a rating"
         />
-        <input
+        <TextField
           onChange={(event) => setSummary(event.target.value)}
-          type="text"
+          id="outlined-basic"
+          label="Summary"
+          variant="outlined"
           placeholder="Enter a summary"
         />
-        <button
+        <Button
+          variant="contained"
           onClick={() => {
             const newBook = {
               name: name,
@@ -179,7 +190,7 @@ function BookList() {
           }}
         >
           Add Book
-        </button>
+        </Button>
       </div>
       <div className="book-list">
         {bookList.map((bk, index) => (
