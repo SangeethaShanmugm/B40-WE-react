@@ -56,3 +56,19 @@ import { AddColor } from "./AddColor";
       {/* {people.map((person) => (
         <Welcome name={person} />
       ))} */}
+
+                    -->  Book (data) --> Counter(data)   
+ BookList(data)   
+                    --> Contact(data)
+
+
+- React flows in only one direction - unidirectional
+from mountain to valley  
+- react flows from parent to child    ✅
+- not from child to parent    ❌           
+
+
+            App (bookList, setBookList)
+
+
+BookList             BookDetail          
