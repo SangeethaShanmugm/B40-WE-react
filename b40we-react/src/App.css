@@ -29,6 +29,7 @@
 
 .add-color {
   display: flex;
+  margin: 30px;
 }
 
 .book-spec {
@@ -66,13 +67,14 @@
   gap: 16px;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin: 30px;
 }
 
 .add-book-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 24px;
+  margin: 30px;
 }
 
 .book-detail-container {

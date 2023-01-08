@@ -4,7 +4,7 @@ export function ColorBox({ color }) {
     backgroundColor: color,
     height: "35px",
     width: "300px",
-    marginTop: "10px",
+    margin: "30px",
   };
   return <div style={styles}></div>;
 }
