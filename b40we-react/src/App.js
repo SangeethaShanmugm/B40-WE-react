@@ -1,7 +1,7 @@
 import "./App.css";
 import { AddColor } from "./AddColor";
 import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Users } from "./Users";
 import { Home } from "./Home";
 import { BookList } from "./BookList";
@@ -9,11 +9,12 @@ import { BookDetail } from "./BookDetail";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { NotFoundPage } from "./NotFoundPage";
-import { AppBar, Button, Toolbar, TextField } from "@mui/material";
+import { AppBar, Button, Toolbar } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { AddBook } from "./AddBook";
 
-// const INITIAL_BOOK_LIST = [
+//const INITIAL_BOOK_LIST = [
 //   {
 //     name: "Charlotte's web",
 //     poster:
@@ -79,11 +80,7 @@ export default function App() {
   //Lifting the state up -> Lifting from child to parent
   const [bookList, setBookList] = useState([]);
 
-  fetch("https://63ba82db56043ab3c79cf849.mockapi.io/books")
-    .then((response) => response.json())
-    .then((data) => {
-      setBookList(data);
-    });
+ 
 
   //1. creating  - createContext -✅
   // 2. Publisher - provider - context.Provider ✅
@@ -181,72 +178,4 @@ export default function App() {
   );
 }
 
-// Task - 20 mins
-// /book/add - <AddBook/>
-// Add Book --> book added -> /book (book list page)
 
-function AddBook({ bookList, setBookList }) {
-  const [name, setName] = useState("");
-  const [poster, setPoster] = useState("");
-  const [rating, setRating] = useState("");
-  const [summary, setSummary] = useState("");
-  const [trailer, setTrailer] = useState("");
-
-  return (
-    <div className="add-book-form">
-      <TextField
-        onChange={(event) => setName(event.target.value)}
-        id="outlined-basic"
-        label="Name"
-        variant="outlined"
-        placeholder="Enter a name"
-      />
-      <TextField
-        onChange={(event) => setPoster(event.target.value)}
-        id="outlined-basic"
-        label="Poster"
-        variant="outlined"
-        placeholder="Enter a poster"
-      />
-      <TextField
-        onChange={(event) => setRating(event.target.value)}
-        id="outlined-basic"
-        label="Rating"
-        variant="outlined"
-        placeholder="Enter a rating"
-      />
-      <TextField
-        onChange={(event) => setSummary(event.target.value)}
-        id="outlined-basic"
-        label="Summary"
-        variant="outlined"
-        placeholder="Enter a summary"
-      />
-      <TextField
-        onChange={(event) => setTrailer(event.target.value)}
-        id="outlined-basic"
-        label="Trailer"
-        variant="outlined"
-        placeholder="Enter a Trailer"
-      />
-      <Button
-        variant="contained"
-        onClick={() => {
-          const newBook = {
-            name: name,
-            poster: poster,
-            rating: rating,
-            summary: summary,
-            trailer: trailer,
-          };
-
-          setBookList([...bookList, newBook]);
-          console.log(bookList, newBook);
-          //copy the bookList and add new book
-        }}
-      >
-        Add Book
-      </Button>
-    </div>
-  );
-}
