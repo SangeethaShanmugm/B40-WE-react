@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import InfoIcon from "@mui/icons-material/Info";
-export function Book({ book, id }) {
+export function Book({ book, id, deleteButton }) {
   // conditional styling
   //true - visible
   //false- hide
@@ -29,7 +29,6 @@ export function Book({ book, id }) {
         </h2>
         <p className="book-rating">⭐{book.rating}</p>
       </div>
-
       <IconButton
         aria-label="like-button"
         color="primary"
@@ -37,7 +36,6 @@ export function Book({ book, id }) {
       >
         {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </IconButton>
-
       <IconButton
         aria-label="like-button"
         color="primary"
@@ -45,7 +43,6 @@ export function Book({ book, id }) {
       >
         <InfoIcon />
       </IconButton>
-
       {/* <button onClick={() => setShow(!show)}>Toggle Summary</button> */}
       {/* <button onClick={() => navigate("/book/" + id)}>Info</button> */}
       {/* <p style={summaryStyles} className="book-summary">
@@ -53,7 +50,7 @@ export function Book({ book, id }) {
       </p> */}
       {/* conditional rendering */}
       {show ? <p className="book-summary"> {book.summary}</p> : ""}
-      <Counter />
+      <Counter /> {deleteButton}
     </div>
   );
 }
