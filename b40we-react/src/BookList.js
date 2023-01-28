@@ -3,6 +3,8 @@ import { Book } from "./Book";
 import { API } from "./global";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { useNavigate } from "react-router-dom";
 
 export function BookList() {
   // const bookList = INITIAL_BOOK_LIST;
@@ -17,6 +19,7 @@ export function BookList() {
   };
   useEffect(() => getBook(), []);
 
+  const navigate = useNavigate();
   return (
     <div>
       <div className="book-list">
@@ -27,7 +30,7 @@ export function BookList() {
             id={bk.id}
             deleteButton={
               <IconButton
-                color="secondary"
+                color="error"
                 onClick={() =>
                   fetch(`${API}/books/${bk.id}`, {
                     method: "DELETE",
@@ -35,6 +38,11 @@ export function BookList() {
                 }
               >
                 <DeleteIcon />
+              </IconButton>
+            }
+            editbutton={
+              <IconButton color="secondary" onClick={() => navigate(`/book/edit/${bk.id}`)}>
+                <EditIcon />
               </IconButton>
             }
           />

@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import InfoIcon from "@mui/icons-material/Info";
-export function Book({ book, id, deleteButton }) {
+export function Book({ book, id, deleteButton, editbutton }) {
   // conditional styling
   //true - visible
   //false- hide
@@ -50,7 +50,7 @@ export function Book({ book, id, deleteButton }) {
       </p> */}
       {/* conditional rendering */}
       {show ? <p className="book-summary"> {book.summary}</p> : ""}
-      <Counter /> {deleteButton}
+      <Counter /> {deleteButton} {editbutton}
     </div>
   );
 }

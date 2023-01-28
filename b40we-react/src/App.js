@@ -13,6 +13,8 @@ import { AppBar, Button, Toolbar } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { AddBook } from "./AddBook";
+import { EditBook } from "./EditBook";
+import { BasicForm } from "./BasicForm";
 
 //const INITIAL_BOOK_LIST = [
 //   {
@@ -80,8 +82,6 @@ export default function App() {
   //Lifting the state up -> Lifting from child to parent
   const [bookList, setBookList] = useState([]);
 
- 
-
   //1. creating  - createContext -✅
   // 2. Publisher - provider - context.Provider ✅
   // 3. Subscriber - useContext  - useContext(context)
@@ -113,6 +113,9 @@ export default function App() {
             </Button>
             <Button color="inherit" onClick={() => navigate("/users")}>
               Users
+            </Button>
+            <Button color="inherit" onClick={() => navigate("/basic-form")}>
+              Basic Form
             </Button>
             <Button
               startIcon={
@@ -150,26 +153,16 @@ export default function App() {
         </AppBar>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/book"
-            element={<BookList bookList={bookList} setBookList={setBookList} />}
-          />
-          <Route
-            path="/book/:bookid"
-            element={
-              <BookDetail bookList={bookList} setBookList={setBookList} />
-            }
-          />
-          <Route
-            path="/book/add"
-            element={<AddBook bookList={bookList} setBookList={setBookList} />}
-          />
+          <Route path="/book" element={<BookList />} />
+          <Route path="/book/:bookid" element={<BookDetail />} />
+          <Route path="/book/add" element={<AddBook />} />
+          <Route path="/book/edit/:bookid" element={<EditBook />} />
 
           {/* <Route path="/book/add" element={<AddBook />} /> */}
           <Route path="/add-color" element={<AddColor />} />
           <Route path="/users" element={<Users />} />
           <Route path="/novel" element={<Navigate replace to="/book" />} />
-
+          <Route path="/basic-form" element={<BasicForm />} />
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<Navigate replace to="/404" />} />
         </Routes>
