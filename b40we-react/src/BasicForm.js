@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-
+//npm install formik --save
+// npm i yup
 const formValidationSchema = yup.object({
   email: yup.string().min(5, "Need a longer email"),
   password: yup
@@ -25,22 +26,26 @@ export function BasicForm() {
         name="email"
         value={formik.values.email}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         type="email"
         placeholder="Enter email"
       />
       <br />
-      {formik.errors.email}
+      {formik.touched.email && formik.errors.email ? formik.errors.email : ""}
       <br />
       <input
         id="password"
         name="password"
         value={formik.values.password}
+        onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         type="password"
         placeholder="Enter password"
       />
       <br />
-      {formik.errors.password}
+      {formik.touched.password && formik.errors.password
+        ? formik.errors.password
+        : ""}
       <br />
       <button type="submit">Submit</button>
     </form>
