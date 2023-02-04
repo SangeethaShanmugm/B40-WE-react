@@ -15,6 +15,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { AddBook } from "./AddBook";
 import { EditBook } from "./EditBook";
 import { BasicForm } from "./BasicForm";
+import { Example } from "./Example";
 
 //const INITIAL_BOOK_LIST = [
 //   {
@@ -117,6 +118,10 @@ export default function App() {
             <Button color="inherit" onClick={() => navigate("/basic-form")}>
               Basic Form
             </Button>
+            <Button color="inherit" onClick={() => navigate("/example")}>
+              Example Context
+            </Button>
+
             <Button
               startIcon={
                 mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />
@@ -163,6 +168,7 @@ export default function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/novel" element={<Navigate replace to="/book" />} />
           <Route path="/basic-form" element={<BasicForm />} />
+          <Route path="/example" element={<Example />} />
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<Navigate replace to="/404" />} />
         </Routes>
@@ -170,5 +176,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-
-
